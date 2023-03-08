@@ -7,7 +7,7 @@ const category =require('../models/category.json');
 // Query for retreieving the records 
 let getTask = async ()=> {
     
-    const query = await Tasks.find().exec();
+    const query = await Tasks.find().sort([['due_date', 1]]).exec();
     return query;
 };
 
@@ -65,6 +65,7 @@ module.exports.addTask = function(req,res){
         due_date: new Date(req.body.due_date),
         status:false
     };
+    console.log(newTask.due_date)
     Tasks.create(newTask,function(err,newTask)
     {
         if(err){
@@ -80,6 +81,19 @@ module.exports.addTask = function(req,res){
 
 
 // Task to find one and update
+module.exports.update_task = async function(req,res){
+    const id = req.body.taskId
+    Tasks.findOneAndUpdate({_id:id},{
+        title:req.body.title,
+        description:req.body.description,
+        category:req.body.category,
+        due_date: new Date(req.body.due_date),
+    },{
+        assert:true
+    }).then();
+    return res.redirect('back');
+
+}
 
 //update task-status
 module.exports.update_task_status = async function (req,res) {
@@ -98,6 +112,20 @@ module.exports.update_task_status = async function (req,res) {
     return res.redirect('back');
 
   }
+
+//   Delete Task
+
+module.exports.delete_task = async function (req,res) {
+    console.log(req.query.id);
+    Tasks.findByIdAndDelete(req.query.id,function(err){
+        if(err)
+        console.log("Error in deleting an object from the database");
+    })
+        return res.redirect('back');
+};
+
+
+  
 
 
 
