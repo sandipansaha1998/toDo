@@ -1,0 +1,453 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>to-do</title>
+    <link rel="icon" type="image/x-icon" href="images/list-check-solid.svg">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="responsive.css">
+</head>
+
+<body>
+    <!-- The body is divided into 
+    - nav
+    - main
+     -->
+
+<!-- Navbar -->
+<nav>
+    <!-- App-logo -->
+    <i class="fa-solid fa-list-check"></i>
+    <!-- App-name -->
+    <h5 class="app-name">To Do List</h5>
+    <!-- Settings -->
+    <div class="save-button"><i class="fa-regular fa-circle-check"></i>
+        <h7>Save</h7>
+    </div>
+    <!-- Profile-Image -->
+    <img id="profile-image" src="images/test.jpeg">
+    <!-- Save Button -->
+
+</nav>
+
+<!-- Main -->
+<!--  The main section has toDo section.This was intended to isolate the toDo from the pomoDero Timer feature which is under development  -->
+<main>
+    <!-- TO DO APP -->
+    <div id="toDo" class=" flex-column test">
+        <!-- TO-DO section is divided into panels
+                -   upper-panel
+                -   lower-panel -->
+
+        <!-- Upper-panel -->
+        <div class="upper-panel  test">
+            <!-- ADD TASK FORM -->
+            <div id="add-task" class=" test panel  flex-col margin ">
+                <form action="/add-task" id="add-task-form" method="POST" class="flex-col">
+                    <!-- The title and the description are wrapped around a
+                        flex container  -->
+                    <!-- The category and task are wrapped around a flex container
+                        to arrange them in a same row -->
+                    <!-- 
+                            Structure :    
+                        - div   - task-title
+                                - task-description
+                        - div   - task-category
+                                - due-date
+                        - submit button -->
+                    <!-- Row 1  -->
+                    <div class=" flex-col margin  test">
+                        <!-- Task Title -->
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" form="add-task-form"
+                            placeholder="What do you want to do?">
+                        <!-- Task Description -->
+                        <!-- <label for="description">Description</label>
+                            <textarea id="description" name="description" form="add-task-form" rows="4" cols="50"
+                                placeholder="What is it all about?"></textarea> -->
+                    </div>
+                    <!-- Row-2 -->
+                    <div id="category-date" class="flex-row test margin">
+                        <!-- Task Category -->
+                        <div class="flex-col col-50">
+                            <label for="category">Category </i>
+                            </label>
+                            <input name="category" id="category" form="add-task-form" list="category-list"
+                                placeholder="Choose Category">
+                            <datalist id="category-list">
+
+                                <% for(let cat of Object.keys(category)){ %>
+                                    <option value="<%= cat%>"></option>
+                                    <% } %>
+                            </datalist>
+                        </div>
+                        <!-- Due Date -->
+                        <div class=" flex-col col-50">
+                            <label for="due_date">Due Date</label>
+                            <input type="date" id="due_date" name="due_date" form="add-task-form">
+                        </div>
+                    </div>
+                    <!-- Row-3 -->
+                    <!-- Submit Button -->
+                    <input type="submit" value="+ Add Task" form="add-task-form">
+                </form>
+            </div>
+        </div>
+        <!-- Lower Panel -->
+        <div class="lower-panel  flex-col ">
+            <!-- 
+                    - tab-controller
+                    -   today (task-status)  
+                    -   upcoming (task-status)  
+                    -   missed (task-status)  
+                 -->
+            <!-- Tab Controller for Task Card Display -->
+            <div class="tab-controller  test flex-row">
+                <button class="today-tab">Today</button>
+                <button class="upcoming-tab">Upcoming</button>
+                <button class="missed-tab">Pending</button>
+            </div>
+
+            <div class="empty hide">No Tasks Assigned</div>
+            <!-- 
+                    Task-status : Conatiners for containnig cards based on 
+                                  due-date of task
+                                The ids below have semantic meaning and each of them
+                                are assigned to task-status class
+                                  - today 
+                                  - upcoming
+                                  - pending
+                 -->
+            <!-- Todays Task -->
+            <form action="/save" method="POST" id="task-completion-form"> </form>
+            <div id="today" class="task-status flex-col  ">
+                <!-- task-title -->
+                <!-- Card -->
+
+                <!--
+                         - card-upper-panel
+                         - card-lower-panel
+                         - card-edit-panel 
+
+                         The hamburger icon allows the user to edit the tasks already added
+                    -->
+                <% for(let tasks of today_tasks){ %>
+                    <div class="card margin flex-col test">
+                        <div class="card-upper-panel test flex-row">
+                            <!-- Checkbox to indicate completeness status -->
+
+                            <% if(tasks.status==true){ %>
+                                <input id="T<%=tasks._id%>" class="completion-checkbox" type="checkbox"
+                                    form="task-completion-form" name="completion_checkbox_T<%=tasks._id%>" checked>
+                                <% } else { %>
+                                    <input id="T<%=tasks._id%>" class="completion-checkbox" type="checkbox"
+                                        form="task-completion-form" name="completion_checkbox_T<%=tasks._id%>">
+                                    <% } %>
+
+
+                                        <!-- Card-title -->
+                                        <div class="card-title">
+
+                                            <%= tasks.title %>
+
+                                        </div>
+                                        <i class="fa-solid fa-pen-to-square  edit-button "></i>
+                                        <a href="/delete-task?id=<%=tasks._id%>"> <i
+                                                class="fa-solid fa-trash-can delete-button "></i></a>
+                        </div>
+                        <div class="card-lower-panel test">
+                            <div class="due-date test">
+                                <i class="fa-solid fa-calendar-days edit-icon"></i>
+                                <h7>
+                                    <%= tasks.due_date %>
+                                </h7>
+                            </div>
+                            <div class="task-category test" style="background-color:<%=category[tasks.category]%>;">
+                                <h7>
+                                    <%= tasks.category %>
+                                </h7>
+                            </div>
+                        </div>
+                        <!-- Edit Task -->
+                        <div class="card-edit-panel hide">
+                            <form id="T_edit_<%=tasks._id%>" method="POST" action="/edit" class="flex-col ">
+                                <input type="hidden" name="taskId" value="<%=tasks._id%>">
+                                <!-- 
+                                    Structure :    
+                                - div   - task-title
+                                        - task-description
+                                - div   - task-category
+                                        - due-date
+                                - submit button -->
+                                <div class=" flex-col flex-row test">
+
+                                    <!-- Task Title -->
+                                    <label for="title">Title</label>
+                                    <input type="text" id="title" name="title" placeholder="What do you want to do?"
+                                        form="T_edit_<%=tasks._id%>" value="<%= tasks.title %>">
+                                    <!-- Task Description -->
+                                    <label for="description">Description</label>
+                                    <textarea id="description" name="description" rows="4" cols="50"
+                                        placeholder="What is it all about?" form="T_edit_<%=tasks._id%>"
+                                        value="<%= tasks.description %>"></textarea>
+
+                                </div>
+                                <div class="flex-row test">
+                                    <!-- Task Category -->
+                                    <div class="flex-col col-50">
+                                        <label for="category">Category</label>
+                                        <select name="category" id="category" form="T_edit_<%=tasks._id%>">
+
+                                            <option value="work">dasd</option>
+                                            <option value="work">rkasdasdasdasdasdasd</option>
+
+                                        </select>
+                                    </div>
+                                    <!-- Due Date -->
+                                    <div class=" flex-col col-50">
+                                        <label for="due_date">Due Date</label>
+                                        <input type="date" id="due_date" name="due_date" form="T_edit_<%=tasks._id%>">
+                                    </div>
+                                </div>
+                                <div class="edit-panel-button flex-row">
+                                    <button class="cancel">Cancel</button>
+                                    <button class="update">Update</button>
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+                    <% } %>
+            </div>
+
+            <!-- Upcoming -->
+            <div id="upcoming" class="task-status flex-col  ">
+                <!-- task-title -->
+                <!-- Card -->
+
+                <!--
+                         - card-upper-panel
+                         - card-lower-panel
+                         - card-edit-panel 
+
+                         The hamburger icon allows the user to edit the tasks already added
+                    -->
+                <% for(let tasks of upcoming_tasks){ %>
+                    <div class="card margin flex-col test">
+                        <div class="card-upper-panel test flex-row">
+                            <!-- Checkbox to indicate completeness status -->
+
+                            <% if(tasks.status==true){ %>
+                                <input id="T<%=tasks._id%>" class="completion-checkbox" type="checkbox"
+                                    form="task-completion-form" name="completion_checkbox_T<%=tasks._id%>" checked>
+                                <% } else { %>
+                                    <input id="T<%=tasks._id%>" class="completion-checkbox" type="checkbox"
+                                        form="task-completion-form" name="completion_checkbox_T<%=tasks._id%>">
+                                    <% } %>
+
+
+                                        <!-- Card-title -->
+                                        <div class="card-title">
+
+                                            <%= tasks.title %>
+
+                                        </div>
+                                        <i class="fa-solid fa-pen-to-square  edit-button "></i>
+                                        <a href="/delete-task?id=<%=tasks._id%>"> <i
+                                                class="fa-solid fa-trash-can delete-button "></i></a>
+                        </div>
+                        <div class="card-lower-panel test">
+                            <div class="due-date test">
+                                <i class="fa-solid fa-calendar-days edit-icon"></i>
+                                <h7>
+                                    <%= tasks.due_date %>
+                                </h7>
+                            </div>
+                            <div class="task-category" style="background-color:<%=category[tasks.category]%>;">
+                                <h7>
+                                    <%= tasks.category %>
+                                </h7>
+                            </div>
+                        </div>
+                        <!-- Edit Task -->
+                        <div class="card-edit-panel hide">
+                            <form id="T_edit_<%=tasks._id%>" method="POST" action="/edit" class="flex-col ">
+                                <input type="hidden" name="taskId" value="<%=tasks._id%>">
+                                <!-- 
+                                    Structure :    
+                                - div   - task-title
+                                        - task-description
+                                - div   - task-category
+                                        - due-date
+                                - submit button -->
+                                <div class=" flex-col flex-row test">
+
+                                    <!-- Task Title -->
+                                    <label for="title">Title</label>
+                                    <input type="text" id="title" name="title" placeholder="What do you want to do?"
+                                        form="T_edit_<%=tasks._id%>" value="<%= tasks.title %>">
+                                    <!-- Task Description -->
+                                    <label for="description">Description</label>
+                                    <textarea id="description" name="description" rows="4" cols="50"
+                                        placeholder="What is it all about?" form="T_edit_<%=tasks._id%>"
+                                        value="<%= tasks.description %>"></textarea>
+
+                                </div>
+                                <div class="flex-row test">
+                                    <!-- Task Category -->
+                                    <div class="flex-col col-50">
+                                        <label for="category">Category</label>
+                                        <select name="category" id="category" form="T_edit_<%=tasks._id%>">
+
+                                            <option value="work">dasd</option>
+                                            <option value="work">rkasdasdasdasdasdasd</option>
+
+                                        </select>
+                                    </div>
+                                    <!-- Due Date -->
+                                    <div class=" flex-col col-50">
+                                        <label for="due_date">Due Date</label>
+                                        <input type="date" id="due_date" name="due_date" form="T_edit_<%=tasks._id%>">
+                                    </div>
+                                </div>
+                                <div class="edit-panel-button flex-row">
+                                    <button class="cancel">Cancel</button>
+                                    <button class="update">Update</button>
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+                    <% } %>
+            </div>
+
+            <!-- Missed -->
+            <div id="pending" class="task-status flex-col  ">
+                <!-- task-title -->
+                <!-- Card -->
+
+                <!--
+                         - card-upper-panel
+                         - card-lower-panel
+                         - card-edit-panel 
+
+                         The hamburger icon allows the user to edit the tasks already added
+                    -->
+                <% for(let tasks of pending_tasks){ %>
+                    <div class="card margin flex-col test">
+                        <div class="card-upper-panel test flex-row">
+                            <!-- Checkbox to indicate completeness status -->
+
+                            <% if(tasks.status==true){ %>
+                                <input id="T<%=tasks._id%>" class="completion-checkbox" type="checkbox"
+                                    form="task-completion-form" name="completion_checkbox_T<%=tasks._id%>" checked>
+                                <% } else { %>
+                                    <input id="T<%=tasks._id%>" class="completion-checkbox" type="checkbox"
+                                        form="task-completion-form" name="completion_checkbox_T<%=tasks._id%>">
+                                    <% } %>
+
+
+                                        <!-- Card-title -->
+                                        <div class="card-title">
+
+                                            <%= tasks.title %>
+
+                                        </div>
+                                        <i class="fa-solid fa-pen-to-square  edit-button "></i>
+                                        <a href="/delete-task?id=<%=tasks._id%>"> <i
+                                                class="fa-solid fa-trash-can delete-button "></i></a>
+                        </div>
+                        <div class="card-lower-panel test">
+                            <div class="due-date test">
+                                <i class="fa-solid fa-calendar-days edit-icon"></i>
+                                <h7>
+                                    <%= tasks.due_date %>
+                                </h7>
+                            </div>
+                            <div class="task-category" style="background-color:<%=category[tasks.category]%>">
+                                <h7>
+                                    <%= tasks.category %>
+                                </h7>
+                            </div>
+                        </div>
+                        <!-- Edit Task -->
+                        <div class="card-edit-panel hide">
+                            <form id="T_edit_<%=tasks._id%>" method="POST" action="/edit" class="flex-col ">
+                                <input type="hidden" name="taskId" value="<%=tasks._id%>">
+                                <!-- 
+                                    Structure :    
+                                - div   - task-title
+                                        - task-description
+                                - div   - task-category
+                                        - due-date
+                                - submit button -->
+                                <div class=" flex-col flex-row test">
+
+                                    <!-- Task Title -->
+                                    <label for="title">Title</label>
+                                    <input type="text" id="title" name="title" placeholder="What do you want to do?"
+                                        form="T_edit_<%=tasks._id%>" value="<%= tasks.title %>">
+                                    <!-- Task Description -->
+                                    <label for="description">Description</label>
+                                    <textarea id="description" name="description" rows="4" cols="50"
+                                        placeholder="What is it all about?" form="T_edit_<%=tasks._id%>"
+                                        value="<%= tasks.description %>"></textarea>
+
+                                </div>
+                                <div class="flex-row test">
+                                    <!-- Task Category -->
+                                    <div class="flex-col col-50">
+                                        <label for="category">Category</label>
+                                        <select name="category" id="category" form="T_edit_<%=tasks._id%>">
+
+                                            <option value="work">dasd</option>
+                                            <option value="work">rkasdasdasdasdasdasd</option>
+
+                                        </select>
+                                    </div>
+                                    <!-- Due Date -->
+                                    <div class=" flex-col col-50">
+                                        <label for="due_date">Due Date</label>
+                                        <input type="date" id="due_date" name="due_date" form="T_edit_<%=tasks._id%>">
+                                    </div>
+                                </div>
+                                <div class="edit-panel-button flex-row">
+                                    <button class="cancel">Cancel</button>
+                                    <button class="update">Update</button>
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+
+    </div>
+</main>
+<script src="https://kit.fontawesome.com/5d0265ed42.js" crossorigin="anonymous"></script>
+<script src="/js/home.js"></script>
+</body>
+
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Home
+</body>
+
+</html>

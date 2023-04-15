@@ -1,16 +1,14 @@
 const mongoose = require('mongoose');
 
-console.log("Mongoose working")
-
-
-
 // Connect to the database
-mongoose.connect('mongodb://localhost/tasks');
+mongoose.connect('mongodb://localhost/task_grid_development');
 
 
-//  aquire the connection to check if the connection is succesfull
+//  aquire the connection to check if the connection is successfull
 const db = mongoose.connection;
-db.on('error',console.error.bind(console,'Connectrion Error'));
+db.on('error',console.error.bind(console,"Error connecting to MongoDB"));
 db.once('open',function(){
-    console.log('Succesfully connected to the database');
+    console.log(`Connected to Database :: MongoDB `);
 })
+
+module.exports = db;

@@ -298,6 +298,7 @@ textarea::placeholder {
   margin-right: 2%;
   padding: 1%;
   box-shadow: 0 1px 1px 1px rgba(0, 0, 0, 0.2);
+  color: white;
 }
 /* Edit panel */
 .card-edit-panel {
@@ -306,16 +307,20 @@ textarea::placeholder {
 .card-edit-panel label {
   padding: 1%;
   font-family: "Asap Condensed", sans-serif;
-  font-size: small;
   font-weight: bolder;
 }
 
-.edit-panel input[type="text"] {
+.card-edit-panel input {
+  font-size: large;
+}
+.card-edit-panel textarea {
+  font-size: large;
 }
 .card-edit-panel select {
   padding: 1px;
   border: 1px solid #ccc;
   border-radius: 3px;
+  font-size: large;
 }
 .edit-panel-button button {
   min-width: 7vw;

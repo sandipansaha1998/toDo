@@ -1,5 +1,5 @@
 //Model Instance
-const Tasks = require('../models/tasks');
+const Tasks = require('../models/task');
 const category =require('../models/category.json');
 
 
@@ -14,7 +14,7 @@ let getTask = async ()=> {
 
 // Home Route
 module.exports.home = async function(req,res){
-    
+    console.log("Home")
     let today_tasks = new Array();
     let pending_tasks = new Array();
     let upcoming_tasks = new Array();
@@ -47,6 +47,8 @@ module.exports.home = async function(req,res){
     }
     
     return res.render('home',{
+        title:'home',
+        layout:'layout',
         upcoming_tasks:upcoming_tasks,
         today_tasks:today_tasks,
         pending_tasks:pending_tasks,

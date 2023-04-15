@@ -1,28 +1,60 @@
-
+// Express
 const express = require('express');
 const port = 8000;
 const app = express();
-const methodOverride = require('method-override');
+// Authentication
+const passport = require('passport');
+const passportLocal = require('./config/passport-local');
+const passportGoogle = require('./config/passport-google-oauth2-strategy');
+const session = require('express-session');
+const MongoStore =  require('connect-mongo');
+// Using layouts
+const expressLayouts = require('express-ejs-layouts');
+// Database Connection
+const db_connection = require('./config/mongoose');
 
 
-// schema definition and model creation
-const db_schema = require('./config/mongoose');
 
-//Model Instance
-const tasks_db = require('./models/tasks')
-// Middleware to override method
-app.use(methodOverride('_method'));
+// Using static files
+app.use(express.static('static'));
 
-app.disable('etag'); // disable caching of GET requests
+// Using Layouts
+app.use(expressLayouts);
+
+// Extarct styles and scripts from subpages into the layout
+app.set('layout extractStyles',true);
+app.set('layout extractScripts',true);
+
+// Setting views 
 app.set('view engine','ejs');
 app.set('views','./views');
 
+app.use(session({
+    name:'taskgrid',
+    // TODO change the secrect before deployment
+    secret:'taskgrid',
+    saveUninitialized:true,
+    resave:true,
+    cookie:{
+        maxAge:(100*60*100)
+    },
+    store:new MongoStore(
+        {
+            mongoUrl:`mongodb://localhost/task_grid_development`
+        }
+    )
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(passportLocal.setAuthenticatedUser);//Middleware which passes on the user{}
+
 app.use(express.urlencoded());
 app.use(express.json());
-app.use('/',require('./routers'));
+app.use('/',require('./routes'));
 
 
-app.use(express.static('static'));
+
 
 
 

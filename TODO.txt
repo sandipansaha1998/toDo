@@ -1,0 +1,24 @@
+Sessions db not being shown
+-- use carousels bootsrap for swiping in phone
+--render home
+-- google auth
+-- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- Add Colour Generator for New category
+-- Learn PUT method to update the task
+-- Add last touch up for styles

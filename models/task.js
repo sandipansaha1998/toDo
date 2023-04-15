@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
 
-console.log("Models workings")
 //Schema Definition
+
 const tasksSchema = new mongoose.Schema({
     title:{
         type:String,
         // required:true
     },
-    description:{
-        type:String,
-        // required:true
+    user:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User'
     },
     category:{
         type:String,
@@ -24,6 +24,8 @@ const tasksSchema = new mongoose.Schema({
         // required:true
     }
 
+},{
+    timestamps:true
 });
 
 

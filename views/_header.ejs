@@ -1,0 +1,12 @@
+<nav class=" p-1 mb-2 " style="background-color: #81bae3;">
+        <span class="fs-3 fw-bold  "><i class="fa-regular fa-calendar-days"></i> Task Grid
+        </span>
+        <a href="/access/destroy-session"><button type="button" class="btn btn-light float-end m-1">Sign
+                        Out</button></a>
+        <span id="current-date" class="fs-5 badge bg-dark float-end m-1 ">April 11 2023 </span>
+</nav>
+
+<script>
+        document.querySelector('#current-date').innerHTML = new Date().toString().split(' ')[0] + ',' + new Date().toString().split(' ')[1] + ' ' +
+                new Date().toString().split(' ')[2] + ' ' + new Date().toString().split(' ')[3];
+</script>

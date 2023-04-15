@@ -56,6 +56,7 @@ editButtonArray[i].addEventListener('click',function(event)
                 editPanelArray[j].classList.add("hide");
                 cardDisplayArrayUpper[j].classList.remove("hide");
                 cardDisplayArrayLower[j].classList.remove("hide");
+                editButtonArray[j].classList.remove("hide");
 
 
             }
@@ -194,6 +195,7 @@ for(let i=0;i<updateButton.length;i++)
         updateForm[i].submit();
     });
 }
+
 
 
 
