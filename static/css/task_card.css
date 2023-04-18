@@ -1,0 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap");
+body {
+  background-color: rgb(218, 239, 246);
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(228, 223, 223, 0.2);
+}
+
+.column-heading {
+  font-family: "Roboto Condensed", sans-serif;
+}
+.checkbox-round {
+  width: 1.3em;
+  height: 1.3em;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  outline: none;
+  cursor: pointer;
+}
+.checkbox-round:checked {
+  background-color: green;
+}

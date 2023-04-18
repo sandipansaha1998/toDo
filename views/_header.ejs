@@ -1,11 +1,16 @@
-<nav class=" p-1 mb-2 " style="background-color: #81bae3;">
-        <span class="fs-3 fw-bold  "><i class="fa-regular fa-calendar-days"></i> Task Grid
-        </span>
-        <a href="/access/destroy-session"><button type="button" class="btn btn-light float-end m-1">Sign
-                        Out</button></a>
-        <span id="current-date" class="fs-5 badge bg-dark float-end m-1 ">April 11 2023 </span>
-</nav>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+                <a class="navbar-brand" href="#">
+                        <img src="./images/logo.png" alt="" width="150rem" height="75rem">
+                </a>
+        </div>
+        <div class="container d-flex justify-content-end">
+                <span id="current-date" class="fs-5 badge bg-dark  m-1 "> </span>
+                <div id="sign-out" class="border border-dark  border-4 rounded p-1"><a href="/access/destroy-session"><i
+                                        class="fa-solid fa-right-from-bracket fa-xl"></i></a></div>
+        </div>
 
+</nav>
 <script>
         document.querySelector('#current-date').innerHTML = new Date().toString().split(' ')[0] + ',' + new Date().toString().split(' ')[1] + ' ' +
                 new Date().toString().split(' ')[2] + ' ' + new Date().toString().split(' ')[3];

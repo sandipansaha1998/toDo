@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passportLocal = require('../config/passport-local');
 const passport = require('passport');
-const homeController = require('../controllers/homeController');
+const homeController = require('../controllers/home_controller');
 const accessController = require('../controllers/accessController');
 
 
@@ -20,5 +20,6 @@ router.get('/login',accessController.renderLogin);
 router.get('/sign-up',accessController.renderSignUp);
 
 router.use('/access',require('./access'));
-router.use('/user',require('./user'))
+router.use('/user',require('./user'));
+router.use('/task',require('./task'));
 module.exports = router;

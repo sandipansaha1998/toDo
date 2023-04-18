@@ -12,49 +12,7 @@ let getTask = async ()=> {
 };
 
 
-// Home Route
-module.exports.home = async function(req,res){
-    console.log("Home")
-    let today_tasks = new Array();
-    let pending_tasks = new Array();
-    let upcoming_tasks = new Array();
 
-    // Current Date 
-    let dateToday={};
-    dateToday.lower_limit = new Date().setHours(0,0,0,0);
-    dateToday.upper_limit = new Date().setHours(23, 59, 59, 999);
-
-
-
-    let tasks = await getTask();
-  
-    for(let task of tasks)
-    {
-        task = task.toJSON();
-        if(task.due_date<dateToday.lower_limit)
-        {
-            task.due_date = task.due_date.toDateString();
-            pending_tasks.push(task);
-        }
-        else if(task.due_date>dateToday.upper_limit){
-            task.due_date = task.due_date.toDateString();
-            upcoming_tasks.push(task);
-        }
-        else{
-            task.due_date = task.due_date.toDateString();
-            today_tasks.push(task);
-        }
-    }
-    
-    return res.render('home',{
-        title:'home',
-        layout:'layout',
-        upcoming_tasks:upcoming_tasks,
-        today_tasks:today_tasks,
-        pending_tasks:pending_tasks,
-        category:category,    
-    })
-};
 
 
 // add-task

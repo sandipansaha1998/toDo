@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="./css/task_card.css">
+<link rel="stylesheet" href="./css/home.css">
+<main class="row">
+    <div id="today-container" class="col-4">
+        <div class="column-heading text-center m-1">
+            <h3 class="card">Today</h3>
+            <%-include('_today') %>
+        </div>
+    </div>
+
+
+    <div id="upcoming-container" class="col-4">
+        <div class="column-heading text-center m-1">
+            <h3 class="card">Upcoming</h3>
+        </div>
+        <%-include('_upcoming') %>
+    </div>
+
+    <div id="past-container" class="col-4">
+        <div class="column-heading text-center m-1">
+            <h3 class="card">Past</h3>
+        </div>
+        <%-include('_past') %>
+    </div>
+
+</main>
+<script src='./js/create_task.js'></script>
+<script src='./js/delete_task.js'></script>

@@ -1,0 +1,28 @@
+<%if(task.status){%>
+    <div class="card m-2 checked" id="card-<%=task._id%>">
+        <%}else{%>
+            <div class="card m-2 " id="card-<%=task._id%>">
+                <%}%>
+                    <div class="card-body text-start">
+
+                        <h5 class="card-title"><span class="badge rounded-pill bg-dark ">
+                                <%= task.category %>
+                            </span><i id="delete-<%=task._id%>" class="fa-solid fa-trash float-end "></i> <i
+                                id="edit-<%=task._id%>" class="fa-regular fa-pen-to-square float-end me-3"></i></h5>
+
+                        <p class="card-text">
+                            <%= task.title %>
+                        </p>
+
+                        <%if(task.status){%>
+                            <input type="checkbox" class="float-end checkbox-round checked" id="<%=task._id%>" checked>
+                            <%}else{%>
+                                <input type="checkbox" class="float-end checkbox-round" id="<%=task._id%>">
+                                <%}%>
+                                    <i class="fa-regular fa-flag m-1"></i><span class="">
+                                        <%= task.due_date %>
+
+                                    </span>
+
+                    </div>
+            </div>

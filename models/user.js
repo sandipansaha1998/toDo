@@ -21,6 +21,12 @@ const tasksSchema = new mongoose.Schema({
             type:mongoose.Schema.Types.ObjectId,
             ref:'Task'
         }
+    ],
+    categories:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Category'
+        }
     ]
 },{
     timestamps:true

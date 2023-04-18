@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 //Schema Definition
 
-const tasksSchema = new mongoose.Schema({
-    title:{
+const categorySchema = new mongoose.Schema({
+    name:{
         type:String,
         // required:true
     },
@@ -11,18 +11,10 @@ const tasksSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'User'
     },
-    category:{
+    color:{
         type:String,
         // required:true
     },
-    due_date:{
-        type:Date,
-        // required:true
-    },
-    status:{
-        type:Boolean,
-        // required:true
-    }
 
 },{
     timestamps:true
@@ -32,5 +24,5 @@ const tasksSchema = new mongoose.Schema({
 
 
 //Model Definition
-const tasks = mongoose.model('Task',tasksSchema);
-module.exports = tasks;
+const category= mongoose.model('Category',categorySchema);
+module.exports = category;
