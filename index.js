@@ -12,6 +12,10 @@ const MongoStore =  require('connect-mongo');
 const expressLayouts = require('express-ejs-layouts');
 // Database Connection
 const db_connection = require('./config/mongoose');
+// Flash Middleware
+const flash = require('connect-flash');
+const customMware = require('./config/flashMiddleware');
+
 
 
 
@@ -29,6 +33,7 @@ app.set('layout extractScripts',true);
 app.set('view engine','ejs');
 app.set('views','./views');
 
+//  express-session
 app.use(session({
     name:'taskgrid',
     // TODO change the secrect before deployment
@@ -45,22 +50,25 @@ app.use(session({
     )
 }));
 
+// Passport Initialization
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(passportLocal.setAuthenticatedUser);//Middleware which passes on the user{}
 
+
+// Parsers
 app.use(express.urlencoded());
 app.use(express.json());
+// Conenct Flash instance
+app.use(flash());
+app.use(customMware.setFlash);
+
+// Routes
 app.use('/',require('./routes'));
 
 
 
-
-
-
-
-
-
+// Server
 app.listen(port,function(err)
 {
     if(err)

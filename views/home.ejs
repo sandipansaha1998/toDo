@@ -1,22 +1,38 @@
+<!-- Stylesheets -->
 <link rel="stylesheet" href="./css/task_card.css">
 <link rel="stylesheet" href="./css/home.css">
+
+
+
+
+<!-- This section was divided into 3 sections based on their due dates
+     - today container
+     - upcoming container
+     - past container  -->
+<div class="tab d-flex d-md-none container-fluid justify-content-center  gap-1 mt-1">
+    <button class="tablinks col-3 btn btn-outline-dark" onclick="openTab(event, 'past-container')">Past</button>
+    <button class="tablinks col-3 btn btn-outline-dark active"
+        onclick="openTab(event, 'today-container')">Today</button>
+    <button class="tablinks col-3 btn btn-outline-dark" onclick="openTab(event, 'upcoming-container')">Upcoming</button>
+</div>
 <main class="row">
-    <div id="today-container" class="col-4">
+    <!-- Today -->
+    <div id="today-container" class="task-container  col-md-4 col-10 mx-auto">
         <div class="column-heading text-center m-1">
             <h3 class="card">Today</h3>
             <%-include('_today') %>
         </div>
     </div>
 
-
-    <div id="upcoming-container" class="col-4">
+    <!-- Upcoming -->
+    <div id="upcoming-container" class="task-container col-md-4 col-10 mx-auto">
         <div class="column-heading text-center m-1">
             <h3 class="card">Upcoming</h3>
         </div>
         <%-include('_upcoming') %>
     </div>
-
-    <div id="past-container" class="col-4">
+    <!-- Past -->
+    <div id="past-container" class="task-container col-md-4 col-10 mx-auto">
         <div class="column-heading text-center m-1">
             <h3 class="card">Past</h3>
         </div>
@@ -24,5 +40,34 @@
     </div>
 
 </main>
+
+<script>
+    function openTab(evt, containerID) {
+        var i, taskContainer, tablinks;
+        taskContainer = document.getElementsByClassName("task-container");
+        for (i = 0; i < taskContainer.length; i++) {
+            taskContainer[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(containerID).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    function checkWidth() {
+        if (window.innerWidth >= 768) {
+            $(".task-container").css("display", "block");
+        }
+        else {
+            $(".task-container").css("display", "none");
+            $("#today-container").css("display", "block");
+
+        }
+    }
+    window.addEventListener("resize", checkWidth);
+    window.addEventListener('load', checkWidth)
+
+</script>
 <script src='./js/create_task.js'></script>
 <script src='./js/delete_task.js'></script>

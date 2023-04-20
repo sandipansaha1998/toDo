@@ -1,6 +1,7 @@
 <!-- Category is supplied -->
 <link rel="stylesheet" href="./css/create_task.css">
 <div class="modal fade" id="create-task-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -14,25 +15,23 @@
                 <div id="create-task-container" class="col-12  mx-auto mt-3  rounded">
 
                     <div class="user-input">
-
+                        <!-- Title -->
                         <label>Title</label>
                         <div class="container border-bottom p-3">
                             <span> <i class="fa-solid fa-circle-info"></i></span>
                             <input class="col-10" type="text" name="title" id="" placeholder="What do you want to do?"
                                 form="create-task-form" required>
                         </div>
-
+                        <!-- Category -->
                         <label>Category</label>
                         <div class="container border-bottom p-3">
                             <input class="col-10" type="data" name="category" id="" placeholder=""
                                 form="create-task-form" list="category-list" style="border: none;outline: none;"
                                 required>
                             <datalist id="category-list">
-
-
                             </datalist>
                         </div>
-
+                        <!-- Due Date -->
                         <label>Due Date</label>
                         <div class="container border-bottom p-3">
                             <input class="col-10" type="date" name="due_date" id="" placeholder=""
@@ -42,6 +41,7 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <!-- Button Panel -->
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" id="create-task-form-submit"
                     data-bs-dismiss="modal">Submit</button>

@@ -14,7 +14,9 @@ module.exports.create = async function(req,res){
         status:false
     };
     let task = await Task.create(newTask);
+
     task = task.toJSON();
+    // Segment contains the container where the newly created task is to inserted
     let segment;
     if(req.xhr){
         if(task.due_date<dateToday.lower_limit)
@@ -45,11 +47,12 @@ module.exports.create = async function(req,res){
 }
 }
 
-
+// Toggles Task Completition status
 module.exports.toggleTask = async function(req,res){
     try{
         
         let task = await Task.findById(req.body.task_id);
+        // Toggling task status
         task.status=!task.status;
         task.save();
         
@@ -65,7 +68,7 @@ module.exports.toggleTask = async function(req,res){
         return
     }
 }
-
+//  Delete task
 module.exports.deleteTask  = async function(req,res){
     try{
         

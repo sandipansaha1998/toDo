@@ -22,7 +22,7 @@ let newTaskDOM = function(task){
  }
  
 
-// Method to append task to segment
+// Method to append task to corresponding segment based on due date
 let addTaskToSegment = function(taskDom,segment){
     console.log($(`#${segment}`));
     $(`#${segment}`).append(taskDom);
@@ -38,13 +38,13 @@ let create_task = function(){
             data: new_task_form.serialize(),
             success: function (data) {
                 console.log("Success")
-                let new_taskDOM = newTaskDOM(data.data.task)
+                let new_taskDOM = newTaskDOM(data.data.task);
+                // Adding Listners to toggle checkbox and delete button
                 new_taskDOM.find('input[type="checkbox"]').get(0).addEventListener('change', toggleStatusListner);
                 new_taskDOM.find('.fa-trash').get(0).addEventListener('click',deleteTaskListner);
+                // Added to DOM
                 addTaskToSegment(new_taskDOM,data.data.segment);
-                
-                // Add the task to DOM depending on the date
-                // Add listners to the delete and toggle status button
+                $('#create-task-form')[0].reset();
             },
             error:{
                 function (err) {console.log(err)}

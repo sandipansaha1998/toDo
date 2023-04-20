@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 //Schema Definition
 
-const tasksSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     name:{
         type:String,
         required:true
@@ -16,16 +16,10 @@ const tasksSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    tasks:[
-        {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'Task'
-        }
-    ],
     categories:[
         {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'Category'
+            type:String,
+            
         }
     ]
 },{
@@ -36,5 +30,5 @@ const tasksSchema = new mongoose.Schema({
 
 
 //Model Definition
-const tasks_db= mongoose.model('User',tasksSchema);
-module.exports = tasks_db;
+const users= mongoose.model('User',userSchema);
+module.exports = users;

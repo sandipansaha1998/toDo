@@ -1,17 +1,23 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-                <a class="navbar-brand" href="#">
-                        <img src="./images/logo.png" alt="" width="150rem" height="75rem">
-                </a>
-        </div>
-        <div class="container d-flex justify-content-end">
-                <span id="current-date" class="fs-5 badge bg-dark  m-1 "> </span>
-                <div id="sign-out" class="border border-dark  border-4 rounded p-1"><a href="/access/destroy-session"><i
-                                        class="fa-solid fa-right-from-bracket fa-xl"></i></a></div>
+<link rel="stylesheet" href="./css/header.css">
+<nav class="container-fluid d-flex justify-content-space-around  mt-3">
+
+        </a>
+        <span id="current-date" class="fs-5 badge bg-dark d-inline-flex align-items-center  roboto-thin"> </span>
+        <img class="mx-auto" src="./images/logo.png" alt="" width="150rem" height="75rem">
+        <div class="button-panel d-flex justify-content-end align-items-center">
+                <button id="add-task" type="button" class="btn my-auto" data-bs-toggle="modal"
+                        data-bs-target="#create-task-modal">
+                        <i class=" fs-1  fa-solid fa-circle-plus fa-xl "></i>
+                </button>
+
+                <a href="/access/destroy-session "
+                        class=" border border-dark border-2 rounded-pill p-2 align-self-center mb-1 btn btn-outline-dark"><i
+                                class="fa-solid fa-right-from-bracket d-sm-fa-sm fa-xl "></i></a>
+
         </div>
 
 </nav>
 <script>
-        document.querySelector('#current-date').innerHTML = new Date().toString().split(' ')[0] + ',' + new Date().toString().split(' ')[1] + ' ' +
-                new Date().toString().split(' ')[2] + ' ' + new Date().toString().split(' ')[3];
+        document.querySelector('#current-date').innerHTML = new Date().toString().split(' ')[1] + ' ' +
+                new Date().toString().split(' ')[2] + '<br />' + + new Date().toString().split(' ')[3];
 </script>
