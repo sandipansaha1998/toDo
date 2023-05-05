@@ -5,9 +5,15 @@
                 <%}%>
                     <div class="card-body text-start">
 
-                        <h5 class="card-title"><span class="badge rounded-pill bg-dark ">
-                                <%= task.category %>
-                            </span><i id="delete-<%=task._id%>" class="fa-solid fa-trash float-end "></i></h5>
+                        <h5 class="card-title">
+                            <%if(task.category){ %>
+                                <span class="badge rounded-pill bg-dark ">
+                                    <%= task.category %>
+
+                                </span>
+                                <% } %>
+                                    <i id="delete-<%=task._id%>" class="fa-solid fa-trash float-end "></i>
+                        </h5>
 
                         <p class="card-text">
                             <%= task.title %>

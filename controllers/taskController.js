@@ -11,7 +11,8 @@ module.exports.create = async function(req,res){
         user:req.user,
         category:req.body.category,
         due_date: new Date(req.body.due_date),
-        status:false
+        status:false,
+
     };
     let task = await Task.create(newTask);
 

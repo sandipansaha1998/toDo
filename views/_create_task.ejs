@@ -19,8 +19,9 @@
                         <label>Title</label>
                         <div class="container border-bottom p-3">
                             <span> <i class="fa-solid fa-circle-info"></i></span>
-                            <input class="col-10" type="text" name="title" id="" placeholder="What do you want to do?"
-                                form="create-task-form" required>
+                            <input class="col-10" type="text" name="title" id="task-title"
+                                placeholder="What do you want to do?" form="create-task-form" required>
+                            <span id='title-empty-error' class="d-none badge bg-danger ">Title cannot be empty</span>
                         </div>
                         <!-- Category -->
                         <label>Category</label>
@@ -34,18 +35,26 @@
                         <!-- Due Date -->
                         <label>Due Date</label>
                         <div class="container border-bottom p-3">
-                            <input class="col-10" type="date" name="due_date" id="" placeholder=""
+                            <input class="col-10" type="date" name="due_date" id="task-date" placeholder=""
                                 form="create-task-form" required>
+                            <span id='invalid-date-error' class="d-none badge bg-danger">Date Invalid</span>
+
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="modal-footer">
                 <!-- Button Panel -->
+
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="create-task-form-submit"
-                    data-bs-dismiss="modal">Submit</button>
+                <input type="submit" class="btn btn-primary" id="create-task-form-submit" value="Add Task"
+                    form="create-task-form">
             </div>
         </div>
     </div>
 </div>
+<script>
+
+</script>
+<script src="./js/form_date.js"></script>

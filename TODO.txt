@@ -1,12 +1,11 @@
 Sessions db not being shown
--- use carousels bootsrap for swiping in phone
---render home
+use carousels bootsrap for swiping in phone
+render home
  google auth
  add ajax addition of task
 add checkbox listner to newly created tasks
 delete button event listner
--- reset password 
--- 
+ 
 
 
 

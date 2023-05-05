@@ -36,12 +36,13 @@
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <script src="https://kit.fontawesome.com/5d0265ed42.js" crossorigin="anonymous"></script>
 
+
             <script>
 
                 <% if (flash.success && flash.success.length > 0) {%>
                     new Noty({
-                        theme: 'relax',
-                        text: '<%=flash.success%>',
+                        theme: 'metroui',
+                        text: '<i class="fa-solid fa-circle-check me-1"></i><%=flash.success%>',
                         type: 'success',
                         layout: 'topRight',
                         timeout: 1500
@@ -49,15 +50,14 @@
             <%}%>
                 <%  if (flash.error && flash.error.length > 0) {%>
                     new Noty({
-                        theme: 'relax',
-                        text: '<%=flash.error%>',
+                        theme: 'metroui',
+                        text: '<i class="fa-solid fa-circle-xmark me-1"></i><%=flash.error%>',
                         type: 'error',
                         layout: 'topRight',
                         timeout: 1500
                     }).show();
             <%}%>
             </script>
-
 </body>
 
 </html>

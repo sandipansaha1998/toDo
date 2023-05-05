@@ -11,11 +11,25 @@ input[type="submit"] {
   background: linear-gradient(to right, #5668e3, #ab1b74) !important;
   color: white;
 }
+input[type="submit"]:disabled {
+  background: gray !important;
+  color: white;
+  cursor: not-allowed;
+}
+input[type="submit"]:disabled:hover {
+  background: gray !important;
+  color: white;
+  cursor: not-allowed;
+}
 input[type="text"] {
   border: none;
   outline: none;
 }
 input[type="password"] {
+  border: none;
+  outline: none;
+}
+input[type="email"] {
   border: none;
   outline: none;
 }

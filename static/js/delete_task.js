@@ -12,7 +12,8 @@ let deleteTaskListner = function(event){
 
 
 function deleteTask(task_id){
-//delete-task_id
+//Deletes the task with id:task_id
+// On success removes the related task card from DOM
 task_id = task_id.split('-')[1]; 
 $.ajax({
 type: "GET",
@@ -23,6 +24,14 @@ data: {
 success:function (data) {
     console.log("success")
     console.log($(`#${data.card_id}`))
+    new Noty({
+        theme: 'metroui',
+        text: '<i class="fa-solid fa-trash"></i>Task Deleted',
+        type: 'success',
+        layout: 'topRight',
+        timeout: 1500
+    }).show();
+    // associated task card removed
     $(`#${data.card_id}`).remove();
   }
 });

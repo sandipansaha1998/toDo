@@ -9,9 +9,11 @@
      - today container
      - upcoming container
      - past container  -->
+
+<!-- Tabs are for mobiles.The tabs are buttons with click listeners attached to render the associated task-container -->
 <div class="tab d-flex d-md-none container-fluid justify-content-center  gap-1 mt-1">
     <button class="tablinks col-3 btn btn-outline-dark" onclick="openTab(event, 'past-container')">Past</button>
-    <button class="tablinks col-3 btn btn-outline-dark active"
+    <button class="tablinks col-3 btn btn-outline-dark active" id=""
         onclick="openTab(event, 'today-container')">Today</button>
     <button class="tablinks col-3 btn btn-outline-dark" onclick="openTab(event, 'upcoming-container')">Upcoming</button>
 </div>
@@ -42,29 +44,37 @@
 </main>
 
 <script>
+    // Displays the desired container on tab click
     function openTab(evt, containerID) {
-        var i, taskContainer, tablinks;
+        let i, taskContainer, tablinks;
         taskContainer = document.getElementsByClassName("task-container");
         for (i = 0; i < taskContainer.length; i++) {
             taskContainer[i].style.display = "none";
         }
         tablinks = document.getElementsByClassName("tablinks");
         for (i = 0; i < tablinks.length; i++) {
-            tablinks[i].className = tablinks[i].className.replace(" active", "");
+            tablinks[i].className = tablinks[i].className.replace("active", "");
         }
         document.getElementById(containerID).style.display = "block";
         evt.currentTarget.className += " active";
     }
+    // To make all the task-containers visible on large screens
     function checkWidth() {
         if (window.innerWidth >= 768) {
             $(".task-container").css("display", "block");
         }
         else {
+            // Today Tab is made visible by default on Small screens
             $(".task-container").css("display", "none");
             $("#today-container").css("display", "block");
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace("active", "");
+            }
 
         }
     }
+    //Listners for resposive behaviour
     window.addEventListener("resize", checkWidth);
     window.addEventListener('load', checkWidth)
 

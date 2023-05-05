@@ -1,13 +1,27 @@
 const User = require('../models/user');
 const mailer = require('../mailers/resetPassword');
+const resetPasswordMailer = require('../worker/reset_password_email_worker');
+const kue = require('../config/kue');
+const queue = require('../config/kue');
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
+
+
+
+
+
 // New User Registration
 module.exports.create = async function(req,res)
-{    
+{ 
+    // hashing the password   
+ 
     try{
+        let hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
         let newUser = {
             email:req.body.email,
-            password:req.body.password,
-            name:req.body.name
+            password:hashedPassword,
+            name:req.body.name,
+            resetPasswordLinkTime:Date.now()
         }
         if(await User.findOne({email:newUser.email}))
         {
@@ -26,7 +40,7 @@ module.exports.create = async function(req,res)
         }
         else
         {
-            req.flash('error','Passwords dont match');
+            req.flash('error',' Passwords dont match');
             return res.redirect('/sign-up');
         }
     }catch(e){
@@ -40,16 +54,24 @@ module.exports.create = async function(req,res)
 // Sends Reset Password Link
 module.exports.sendResetPasswordLink = async function(req,res){
     try{
-        console.log(req.body.email)
         let user = await User.findOne({email:req.body.email});
-        console.log(user);
+        console.log(user)
         if(!user){
             req.flash('error','No emails found!!')
             res.redirect('back');
         }
         else{
+            // Setting Validity of link
+            user.resetPasswordLinkTime = Date.now();
+            user.save();
             // Send Password Reset Link
-            mailer.resetPasswordLink(user);
+            // mailer.resetPasswordLink(user);
+            
+            queue.create('emails',user).save(function (err) {
+                if(err){
+                    console.log("Error in sending job to queue",err);
+                }
+              })
             req.flash('success','Reset Link Sent to Registered Email')
             res.redirect('/login')
         }
@@ -72,7 +94,8 @@ module.exports.resetPassword = async function(req,res){
         else
         {
         let user = await User.findById(req.body.user_id);
-        user.password = req.body.password;
+        let hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
+        user.password = hashedPassword;
         user.save();
             req.flash('success','Password Reset Successful');
             return res.redirect('/login')
