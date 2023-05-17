@@ -5,43 +5,85 @@ let newTaskDOM = function(task){
     {
         return $(`<div class="card m-2" id="card-${task._id}">
         <div class="card-body text-start">
-    
+            <h5 class="card-title">
+            
+            <button type="button" class="btn btn-outline-danger float-end"
+                data-bs-toggle="modal" data-bs-target="#deleteModal-${task._id}">
+                <i class="fa-solid fa-trash-can "></i>
+            </button>
+            </h5>
             <h5 class="card-title"><span class="badge rounded-pill bg-dark ">
                     ${task.category}
-                </span><i id="delete-${task._id}" class="fa-solid fa-trash float-end"></i> </h5>
-    
-            <p class="card-text">
-                ${task.title}
-            </p>
+                </span> </h5>
+            <p class="card-text">${task.title}</p>
+
             <input type="checkbox" class="float-end checkbox-round" id="${task._id}">
-            <i class="fa-regular fa-flag m-1"></i><span class="">
-                ${task.due_date}
-            </span>
-    
+            <i class="fa-regular fa-flag m-1"></i>
+            <span class="">${task.due_date}</span>
         </div>
-    </div>`)
-    }
-    // Task-category is empty
+ </div>
+ <div class="modal fade" id="deleteModal-${task._id}" tabindex="-1"
+aria-labelledby="#modalLabel-${task._id}" aria-hidden="true">
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body fs-5">
+            Task once deleted <strong>cannot</strong> be retrieved
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+            <button type="button" id="delete-${task._id}" class="btn btn-danger delete-button"
+                data-bs-dismiss="modal">
+                Delete<i class="fa-solid fa-trash m-1  "></i>
+            </button>
+        </div>
+    </div>
+</div>
+</div>`)}
+
+// Task-category is empty
     else
     {
         return $(`<div class="card m-2" id="card-${task._id}">
-        <div class="card-body text-start">
+                        <div class="card-body text-start">
+                            <h5 class="card-title">
+                            
+                            <button type="button" class="btn btn-outline-danger float-end"
+                                data-bs-toggle="modal" data-bs-target="#deleteModal-${task._id}">
+                                <i class="fa-solid fa-trash-can "></i>
+                            </button>
+                            </h5>
     
-            <h5 class="card-title">
-            <i id="delete-${task._id}" class="fa-solid fa-trash float-end"></i> 
-            </h5>
-    
-            <p class="card-text">
-                ${task.title}
-            </p>
-            <input type="checkbox" class="float-end checkbox-round" id="${task._id}">
-            <i class="fa-regular fa-flag m-1"></i><span class="">
-                ${task.due_date}
-            </span>
-    
-        </div>
-    </div>`)
-    }
+                            <p class="card-text">${task.title}</p>
+
+                            <input type="checkbox" class="float-end checkbox-round" id="${task._id}">
+                            <i class="fa-regular fa-flag m-1"></i>
+                            <span class="">${task.due_date}</span>
+                        </div>
+                 </div>
+                 <div class="modal fade" id="deleteModal-${task._id}" tabindex="-1"
+                aria-labelledby="#modalLabel-${task._id}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body fs-5">
+                            Task once deleted <strong>cannot</strong> be retrieved
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                            <button type="button" id="delete-${task._id}" class="btn btn-danger delete-button"
+                                data-bs-dismiss="modal">
+                                Delete<i class="fa-solid fa-trash m-1  "></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>`
+    )}
  
  }
  
@@ -93,7 +135,7 @@ let create_task = function(e){
                 let new_taskDOM = newTaskDOM(data.data.task);
                 // Adding Listners to toggle checkbox and delete button
                 new_taskDOM.find('input[type="checkbox"]').get(0).addEventListener('change', toggleStatusListner);
-                new_taskDOM.find('.fa-trash').get(0).addEventListener('click',deleteTaskListner);
+                new_taskDOM.find('.delete-button').get(0).addEventListener('click',deleteTaskListner);
                 // Added to DOM
                 addTaskToSegment(new_taskDOM,data.data.segment);
                 // reseting the create task form
@@ -108,10 +150,7 @@ let create_task = function(e){
 }
 
 
-// Method to add listners to toggle status and delete button
-let delete_task = function(inputTag,deleteButton){
 
-}
 // Adding Listner to the submit button
 let newTaskSubmit = document.querySelector('#create-task-form-submit');
 newTaskSubmit.addEventListener('click',create_task);

@@ -6,7 +6,7 @@ passwordInput.addEventListener('input', function() {
   // validates Password length
   if (passwordInput.value.length >= 6) {
     submitButton.disabled = false;
-    passowrdLengthError.classList.remove('d-none');
+    passowrdLengthError.classList.add('d-none');
   
   } else {
     submitButton.disabled = true;

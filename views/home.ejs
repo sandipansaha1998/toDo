@@ -1,6 +1,6 @@
 <!-- Stylesheets -->
-<link rel="stylesheet" href="./css/task_card.css">
-<link rel="stylesheet" href="./css/home.css">
+<link rel="stylesheet" href="/<%= assetPath('css/task_card.css')%>">
+<link rel="stylesheet" href="/<%= assetPath('css/home.css')%>">
 
 
 
@@ -12,12 +12,12 @@
 
 <!-- Tabs are for mobiles.The tabs are buttons with click listeners attached to render the associated task-container -->
 <div class="tab d-flex d-md-none container-fluid justify-content-center  gap-1 mt-1">
-    <button class="tablinks col-3 btn btn-outline-dark" onclick="openTab(event, 'past-container')">Past</button>
-    <button class="tablinks col-3 btn btn-outline-dark active" id=""
+    <button class="tablinks col-4 btn btn-outline-dark" onclick="openTab(event, 'past-container')">Past</button>
+    <button class="tablinks col-4 btn btn-outline-dark active" id=""
         onclick="openTab(event, 'today-container')">Today</button>
-    <button class="tablinks col-3 btn btn-outline-dark" onclick="openTab(event, 'upcoming-container')">Upcoming</button>
+    <button class="tablinks col-4 btn btn-outline-dark" onclick="openTab(event, 'upcoming-container')">Upcoming</button>
 </div>
-<main class="row">
+<main class="row container-fluid">
     <!-- Today -->
     <div id="today-container" class="task-container  col-md-4 col-10 mx-auto">
         <div class="column-heading text-center m-1">
@@ -42,6 +42,7 @@
     </div>
 
 </main>
+
 
 <script>
     // Displays the desired container on tab click
@@ -79,5 +80,5 @@
     window.addEventListener('load', checkWidth)
 
 </script>
-<script src='./js/create_task.js'></script>
-<script src='./js/delete_task.js'></script>
+<script src="/<%= assetPath('js/create_task.js')%>"></script>
+<script src="/<%= assetPath('js/delete_task.js')%>"></script>

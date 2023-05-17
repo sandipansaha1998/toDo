@@ -27,3 +27,7 @@ body {
 .checkbox-round:checked {
   background-color: green;
 }
+
+.card-body button {
+  border-radius: 50% !important;
+}

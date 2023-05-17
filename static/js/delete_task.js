@@ -36,7 +36,8 @@ success:function (data) {
   }
 });
 }
-const deletebuttons = document.querySelectorAll('.fa-trash');
+// Adding Listners to delete buttons
+const deletebuttons = document.querySelectorAll('.delete-button');
 for(let i=0;i<deletebuttons.length;i++)
 {
 deletebuttons[i].addEventListener('click',deleteTaskListner)  
