@@ -13,6 +13,7 @@
                                     <%= task.category %>
                                 </span>
                                 <% } %>
+
                                     <!-- Button trigger confirm delete modal -->
                                     <button type="button" class="btn btn-outline-danger float-end"
                                         data-bs-toggle="modal" data-bs-target="#deleteModal-<%=task._id%>">
@@ -38,6 +39,7 @@
 
                     </div>
             </div>
+            <!-- Confirm Delete Modal -->
             <div class="modal fade" id="deleteModal-<%=task._id%>" tabindex="-1"
                 aria-labelledby="#modalLabel-<%=task._id%>" aria-hidden="true">
                 <div class="modal-dialog">
@@ -46,7 +48,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body fs-5">
-                            Task once deleted <strong>cannot</strong> be retrieved
+                            Task once deleted <span class="fw-bold">cannot</span> be retrieved
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>

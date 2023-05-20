@@ -4,7 +4,7 @@ const crypto = require("crypto");
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const env = require("../config/enviroment");
-console.log(env.root_url);
+// Google OAuth Staratgy
 passport.use(
   new googleStrategy(
     {

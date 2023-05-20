@@ -11,9 +11,9 @@ body {
   background-color: black;
   color: white;
 }
-.column-heading {
+/* .column-heading {
   font-family: "Roboto Condensed", sans-serif;
-}
+} */
 .checkbox-round {
   width: 1.3em;
   height: 1.3em;

@@ -71,8 +71,6 @@ app.use(customMware.setFlash);
 // Routes
 app.use("/", require("./routes"));
 
-console.log(env);
-
 // Server
 app.listen(port, function (err) {
   if (err) {
