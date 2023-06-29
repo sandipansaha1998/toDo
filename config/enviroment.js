@@ -21,7 +21,7 @@ const development = {
 // production Mode Properties
 const production = {
   name: "production",
-  root_url: "http://13.53.138.220.nip.io",
+  root_url: "https://taskgrid.socialise-india.in",
   asset_path: process.env.TASKGRID_ASSET_PATH,
   session_cookie_key: process.env.TASKGRID_SESSION_COOKIE_KEY,
   db: process.env.TASKGRID_DB,
