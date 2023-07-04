@@ -9,6 +9,18 @@
   color: black !important;
 }
 
+#past-container .card-body button {
+  background-color: rgb(238, 5, 5) !important;
+  color: white !important;
+  border-radius: 50% !important;
+}
+
+#past-container .card-body button:hover {
+  background-color: white !important;
+  color: red !important;
+  border-radius: 50% !important;
+}
+
 #past-container .checked {
   background: yellowgreen !important;
 }

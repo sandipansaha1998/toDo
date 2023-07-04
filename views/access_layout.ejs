@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
         integrity="sha512-0p3K0H3S6Q4bEWZ/WmC94Tgit2ular2/n0ESdfEX8l172YyQj8re1Wu9s/HT9T/T2osUw5Gx/6pAZNk3UKbESw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/css/access_layout.css">
+    <link rel="stylesheet" href="/<%= assetPath('css/access_layout.css')%>">
 
     <%- style %>
 </head>
@@ -36,12 +36,13 @@
                 crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <script src="https://kit.fontawesome.com/5d0265ed42.js" crossorigin="anonymous"></script>
 
+
             <script>
 
                 <% if (flash.success && flash.success.length > 0) {%>
                     new Noty({
-                        theme: 'relax',
-                        text: '<%=flash.success%>',
+                        theme: 'metroui',
+                        text: '<i class="fa-solid fa-circle-check me-1"></i><%=flash.success%>',
                         type: 'success',
                         layout: 'topRight',
                         timeout: 1500
@@ -49,15 +50,14 @@
             <%}%>
                 <%  if (flash.error && flash.error.length > 0) {%>
                     new Noty({
-                        theme: 'relax',
-                        text: '<%=flash.error%>',
+                        theme: 'metroui',
+                        text: '<i class="fa-solid fa-circle-xmark me-1"></i><%=flash.error%>',
                         type: 'error',
                         layout: 'topRight',
                         timeout: 1500
                     }).show();
             <%}%>
             </script>
-
 </body>
 
 </html>

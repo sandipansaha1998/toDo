@@ -1,15 +1,15 @@
-<link rel="stylesheet" href="./css/header.css">
+<link rel="stylesheet" href="/<%= assetPath('css/header.css')%>">
 <nav class="container-fluid d-flex justify-content-space-around  mt-3">
 
         </a>
         <span id="current-date" class="fs-5 badge bg-dark d-inline-flex align-items-center  roboto-thin"> </span>
-        <img class="mx-auto" src="./images/logo.png" alt="" width="150rem" height="75rem">
+        <img class="mx-auto" src="/<%= assetPath('images/logo.png')%>" alt="" width="150rem" height="75rem">
         <div class="button-panel d-flex justify-content-end align-items-center">
                 <button id="add-task" type="button" class="btn my-auto" data-bs-toggle="modal"
                         data-bs-target="#create-task-modal">
                         <i class=" fs-1  fa-solid fa-circle-plus fa-xl "></i>
                 </button>
-
+                <!-- Logout Button -->
                 <a href="/access/destroy-session "
                         class=" border border-dark border-2 rounded-pill p-2 align-self-center mb-1 btn btn-outline-dark"><i
                                 class="fa-solid fa-right-from-bracket d-sm-fa-sm fa-xl "></i></a>
@@ -18,6 +18,7 @@
 
 </nav>
 <script>
+        // Sets the current date 
         document.querySelector('#current-date').innerHTML = new Date().toString().split(' ')[1] + ' ' +
                 new Date().toString().split(' ')[2] + '<br />' + + new Date().toString().split(' ')[3];
 </script>

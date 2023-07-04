@@ -4,11 +4,16 @@ body {
 }
 .card {
   box-shadow: 0 4px 8px 0 rgba(228, 223, 223, 0.2);
+  font-family: "Roboto Condensed", sans-serif !important;
 }
 
-.column-heading {
-  font-family: "Roboto Condensed", sans-serif;
+.column-heading .card:nth-child(1) {
+  background-color: black;
+  color: white;
 }
+/* .column-heading {
+  font-family: "Roboto Condensed", sans-serif;
+} */
 .checkbox-round {
   width: 1.3em;
   height: 1.3em;
@@ -21,4 +26,8 @@ body {
 }
 .checkbox-round:checked {
   background-color: green;
+}
+
+.card-body button {
+  border-radius: 50% !important;
 }

@@ -1,0 +1,15 @@
+{
+  "css/access_layout.css": "css/access_layout-9d210f9b18.css",
+  "css/create_task.css": "css/create_task-88211b3b88.css",
+  "css/header.css": "css/header-900bbb691a.css",
+  "css/home.css": "css/home-781b6ed768.css",
+  "css/responsive.css": "css/responsive-d41d8cd98f.css",
+  "css/task_card.css": "css/task_card-d0e6342956.css",
+  "images/logo.png": "images/logo-339af1a99d.png",
+  "js/create_task.js": "js/create_task-93138961f1.js",
+  "js/delete_task.js": "js/delete_task-bb9987be62.js",
+  "js/form_date.js": "js/form_date-40a2571bba.js",
+  "js/populate_task_form.js": "js/populate_task_form-7b24b4cc1d.js",
+  "js/toggle_status.js": "js/toggle_status-198e623049.js",
+  "js/validate_input.js": "js/validate_input-b12469b847.js"
+}

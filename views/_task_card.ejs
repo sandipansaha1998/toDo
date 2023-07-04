@@ -1,3 +1,5 @@
+<!-- Task cards -->
+<!-- ckecked class represents a accomplished task -->
 <%if(task.status){%>
     <div class="card m-2 checked" id="card-<%=task._id%>">
         <%}else{%>
@@ -5,15 +7,27 @@
                 <%}%>
                     <div class="card-body text-start">
 
-                        <h5 class="card-title"><span class="badge rounded-pill bg-dark ">
-                                <%= task.category %>
-                            </span><i id="delete-<%=task._id%>" class="fa-solid fa-trash float-end "></i></h5>
+                        <h5 class="card-title">
+                            <%if(task.category){ %>
+                                <span class="badge rounded-pill bg-dark ">
+                                    <%= task.category %>
+                                </span>
+                                <% } %>
+
+                                    <!-- Button trigger confirm delete modal -->
+                                    <button type="button" class="btn btn-outline-danger float-end"
+                                        data-bs-toggle="modal" data-bs-target="#deleteModal-<%=task._id%>">
+                                        <i class="fa-solid fa-trash-can "></i>
+                                    </button>
+
+                        </h5>
 
                         <p class="card-text">
                             <%= task.title %>
                         </p>
 
                         <%if(task.status){%>
+                            <!-- Checkbox indicating completion status -->
                             <input type="checkbox" class="float-end checkbox-round checked" id="<%=task._id%>" checked>
                             <%}else{%>
                                 <input type="checkbox" class="float-end checkbox-round" id="<%=task._id%>">
@@ -24,4 +38,25 @@
                                     </span>
 
                     </div>
+            </div>
+            <!-- Confirm Delete Modal -->
+            <div class="modal fade" id="deleteModal-<%=task._id%>" tabindex="-1"
+                aria-labelledby="#modalLabel-<%=task._id%>" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body fs-5">
+                            Task once deleted <span class="fw-bold">cannot</span> be retrieved
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                            <button type="button" id="delete-<%=task._id%>" class="btn btn-danger delete-button"
+                                data-bs-dismiss="modal">
+                                Delete<i class="fa-solid fa-trash m-1  "></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>

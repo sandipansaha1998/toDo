@@ -16,12 +16,9 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    categories:[
-        {
-            type:String,
-            
-        }
-    ]
+    resetPasswordLinkTime:{
+        type:Date
+    }
 },{
     timestamps:true
 });

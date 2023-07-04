@@ -7,28 +7,27 @@
         <label>Name</label>
         <div class="container border-bottom p-3">
             <i class="fa-regular fa-user"></i>
-            <input class="col-10" type="text" name="name" id="" placeholder="Type your name" form="create-user"
-                required>
+            <input class="col-10" type="text" name="name" placeholder="Type your name" form="create-user" required>
         </div>
 
         <label>Email</label>
         <div class="container border-bottom p-3">
             <i class="fa-regular fa-user"></i>
-            <input class="col-10" type="text" name="email" id="" placeholder="Type your name" form="create-user"
-                required>
+            <input class="col-10" type="email" name="email" placeholder="Type your name" form="create-user" required>
         </div>
 
         <label>Password</label>
         <div class="container border-bottom p-3">
             <span><i class="fa-solid fa-lock"></i></span>
-            <input class="col-10" type="password" name="password" id="" placeholder="Type your password"
-                form="create-user" required>
+            <input class="col-10" type="password" name="password" id="create-user-password"
+                placeholder="Type your password" form="create-user" required>
+            <span id='password-length-error' class="d-none badge bg-danger">Password Minimum 6 characters</span>
         </div>
 
         <label>Confirm Password</label>
         <div class="container border-bottom p-3">
             <span><i class="fa-solid fa-lock"></i></span>
-            <input class="col-10" type="password" name="confirm_password" id="" placeholder="Type your password"
+            <input class="col-10" type="password" name="confirm_password" placeholder="Type your password"
                 form="create-user" required>
         </div>
 
@@ -36,9 +35,10 @@
     </div>
     <div class="button text-center">
 
-        <input class="col-6 rounded-pill" type="submit" value="Sign Up" form="create-user">
+        <input class="col-6 rounded-pill" type="submit" value="Sign Up" form="create-user" id="create-user-submit">
     </div>
     <div class="text-end m-1">
         <span>Already Have an Account - <a href="/login">Login</a></span>
     </div>
+    <script src="/<%= assetPath('js/validate_input.js')%>"></script>
 </div>
